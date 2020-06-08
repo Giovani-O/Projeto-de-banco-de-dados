@@ -2,40 +2,40 @@ create database projeto;
 use projeto;
 
 create table funcionario(
-	idFuncionario int primary key auto_increment,
+    idFuncionario int primary key auto_increment,
     nomeFuncionario varchar(50),
     salarioFuncionario float,
     cargoFuncionario varchar(25)
 );
 
 create table cliente(
-	idCliente int primary key auto_increment,
+    idCliente int primary key auto_increment,
     nomeCliente varchar(50),
     telefoneCliente varchar(20)
 );
 
 create table instrumentos(
-	idInstrumentos int primary key auto_increment,
+    idInstrumentos int primary key auto_increment,
     valorInstrumentos float,
     tipoInstrumentos varchar(20),
     nomeInstrumentos varchar(50)
 );
 
 create table diversos(
-	idDiversos int primary key auto_increment,
+    idDiversos int primary key auto_increment,
     valorDiversos float,
     tipoDiversos varchar(20),
     nomeDiversos varchar(50)
 );
 
 create table servicos(
-	idServicos int primary key auto_increment,
+    idServicos int primary key auto_increment,
     valorServicos float,
     nomeServicos varchar(50)
 );
 
 create table notaFiscal(
-	idNota int primary key auto_increment,
+    idNota int primary key auto_increment,
     valorNota float,
     dataNota varchar(10),
     fk_idFuncionario int not null,
@@ -49,7 +49,7 @@ create table notaFiscal(
 );
 
 create table inclui(
-	fk_idNota int,
+    fk_idNota int,
     fk_idServicos int,
     foreign key (fk_idNota) references notaFiscal(idNota),
     foreign key (fk_idServicos) references servicos(idServicos)
@@ -100,7 +100,7 @@ delete from instrumentos where idInstrumentos = 2;
 
 -- Relatório
 select valorNota, dataNota, nomeFuncionario, nomeCliente, nomeInstrumentos, valorInstrumentos, nomeDiversos, valorDiversos, nomeServicos, valorServicos from notaFiscal as n 
-	join funcionario as f on f.idFuncionario=n.fk_idFuncionario
+    join funcionario as f on f.idFuncionario=n.fk_idFuncionario
     join cliente as c on c.idCliente=n.fk_IdCliente
     join instrumentos as i on i.idInstrumentos=n.fk_idInstrumentos
     join diversos as d on d.idDiversos=n.fk_idDiversos
